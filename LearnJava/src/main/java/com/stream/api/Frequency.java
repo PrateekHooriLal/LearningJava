@@ -16,13 +16,15 @@ public class Frequency {
 		String s = "Prateek is a Java Developer".replaceAll(" ", "");
 		char[] array = s.toCharArray();
 
-		Stream ins = Stream.of(s);
-		Stream inse = Stream.of(array);
+		//three ways to convert String in to stream
+		Stream ins   = Stream.of(s);
+		Stream inse  = Stream.of(array);
 		IntStream sd = s.chars();
+		
 		String[] df = s.split(s);
 
-		System.out.println(getCharFrequency(s));
-		System.out.println(getCharFrequencyStream(s));
+		System.out.println("Using HashMap="+getCharFrequency(s));
+		System.out.println("Using Streams="+getCharFrequencyStream(s));
 	}
 
 	// Find frequency of characters in String using hashmap .

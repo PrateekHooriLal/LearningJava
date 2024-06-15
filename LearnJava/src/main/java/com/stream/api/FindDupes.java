@@ -14,7 +14,8 @@ public class FindDupes {
 		// TODO Auto-generated method stub
 
 		Set<String> tempSet = new HashSet<>();
-		List<String> duplicateWords = names.stream().filter(w -> !tempSet.add(w)).collect(Collectors.toList());
+		
+		List<String> duplicateWords = names.stream().filter(w ->!tempSet.add(w)).collect(Collectors.toList());
 
 		List<String> uniqueWords = names.stream().distinct().collect(Collectors.toList());
 		System.out.println(duplicateWords);

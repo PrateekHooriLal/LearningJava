@@ -1,6 +1,6 @@
 package com.stream.api;
 
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
 	private int id;
 	private String name;
@@ -40,4 +40,13 @@ public class Employee {
 	public void printEmp() {
 		System.out.println("id=" + id + "  name=" + name + "  Salary=" + salary);
 	}
+
+	@Override
+	public int compareTo(Employee o) {
+		// TODO Auto-generated method stub
+		return (int) (this.getSalary() - o.getSalary());
+		
+	}
+
+	
 }

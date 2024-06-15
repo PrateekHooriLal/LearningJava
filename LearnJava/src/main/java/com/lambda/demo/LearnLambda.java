@@ -1,7 +1,5 @@
 package com.lambda.demo;
 
-import java.util.function.Predicate;
-
 public class LearnLambda {
 
 	public static void main(String[] args) {
@@ -14,6 +12,7 @@ public class LearnLambda {
 		LearnLambda ll = new LearnLambda();
 		ll.nsl.iamabstract();
 		ll.nsl.perform();
+		
 
 		System.out.println(ll.fs.findSum(1, 3));
 	}
@@ -27,7 +26,5 @@ public class LearnLambda {
 	how nsl = () -> System.out.println("Testing Non static Lamda expression");
 
 	who fs = (a, b) -> a + b;
-
-//Predicate<T>
 
 }
