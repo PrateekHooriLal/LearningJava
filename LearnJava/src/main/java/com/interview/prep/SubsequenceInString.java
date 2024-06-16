@@ -3,6 +3,8 @@ package com.interview.prep;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SubsequenceInString {
 
@@ -22,13 +24,18 @@ public class SubsequenceInString {
 			set.add(ans);
 		}
 
-		System.out.println(set);
+		System.out.println(set.toString() + "\n\n");
+
+		System.out.println("======Using Stream====");
+		System.out.println(generateSubsequences(s).toList().toString());
 
 		/*
 		 * total number of subsequences for String of length n will be 2^n
 		 * (Math.pow(2,n))
 		 */
 		System.out.println(Math.pow(2, 5));
+
+        ///generateSubsequences(s).forEach(System.out::println);
 
 	}
 
@@ -53,6 +60,14 @@ public class SubsequenceInString {
 		findSubsequence(s.substring(1), subeq);
 
 	}
-	
+
+	// Using Streams to generate subsequence.
+	public static Stream<String> generateSubsequences(String input) {
+		return IntStream.range(0, 1 << input.length())
+				.mapToObj(num -> IntStream.range(0, input.length()).filter(i -> (num & (1 << i)) > 0)
+						.mapToObj(input::charAt)
+						.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append).toString())
+				.sorted();
+	}
 
 }
