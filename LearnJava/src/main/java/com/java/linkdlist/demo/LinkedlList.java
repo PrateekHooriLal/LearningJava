@@ -98,8 +98,7 @@ public class LinkedlList {
 		System.out.println("[null]");
 	}// print method ends
 
-	// ================================================== declaring inner class
-	// node================================//
+	/* ================================================== declaring inner class node================================*/
 	public static class Node {
 
 		public Node next;

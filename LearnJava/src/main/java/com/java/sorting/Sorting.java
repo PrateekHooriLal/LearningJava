@@ -1,5 +1,9 @@
 package com.java.sorting;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  * Parent Class for all the sorting Algorithms.
  * 
@@ -21,6 +25,8 @@ public abstract class Sorting {
 
 	/* A utility function to print array of size n */
 	public static void printArray(int arr[]) {
+		List ls = Stream.of(array).toList();
+		Collections.sort(ls);
 		int n = arr.length;
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + " ");

@@ -13,6 +13,8 @@ public class FindDupes {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		String s = "A";
+		System.out.println(s.codePointAt(0));
 		Set<String> tempSet = new HashSet<>();
 		
 		List<String> duplicateWords = names.stream().filter(w ->!tempSet.add(w)).collect(Collectors.toList());
