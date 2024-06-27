@@ -3,7 +3,7 @@ package com.print.Mydate;
 /*@ author Ritik & Prateek
  * 
  * */
-//here using getter setter function wehave initilized the data members.
+//here using getter setter function we have initilized the data members.
 public class Swapper {
 
 	int day, mon, year;

@@ -17,7 +17,7 @@ public class TransactionService {
 
 	@Autowired
 	private KafkaTemplate<String, Transaction> kafkaTemp;
-	
+
 	private static final String Topic = "transaction-topic";
 
 	public Transaction createTransaction(Transaction transaction) {
@@ -30,20 +30,22 @@ public class TransactionService {
 	public Transaction updateTransaction(Long transactionId, Transaction transaction) {
 		// Implement transaction update logic
 		// Fetch transaction from repository, update fields and save
-		Transaction existingTransaction = getTransactionById(transactionId);
+		if (getTransactionById(transactionId) != null) {
 
-		existingTransaction.setAccountNumber(transaction.getAccountNumber());
-		existingTransaction.setAmount(transaction.getAmount());
-		existingTransaction.setStatus(transaction.getStatus());
-		existingTransaction.setTransactionType(transaction.getTransactionType());
-		existingTransaction.setTimeStamp(transaction.getTimeStamp());
+			Transaction updatedTransaction = new Transaction();
+			updatedTransaction.setAccountNumber(transaction.getAccountNumber());
+			updatedTransaction.setAmount(transaction.getAmount());
+			updatedTransaction.setStatus(transaction.getStatus());
+			updatedTransaction.setTransactionType(transaction.getTransactionType());
+			updatedTransaction.setTimeStamp(transaction.getTimeStamp());
 
-		// sending to kafka topic
-		kafkaTemp.send(Topic, existingTransaction);
-		kafkaTemp.getTransactionIdPrefix();
+			// sending to kafka topic
+			kafkaTemp.send(Topic, updatedTransaction);
 
-		// save to db
-		return transactionRepository.save(existingTransaction);
+			// save to db
+			return transactionRepository.save(updatedTransaction);
+		} else
+			return null;
 
 	}
 
@@ -54,7 +56,7 @@ public class TransactionService {
 	}
 
 	public List<Transaction> getAllTransaction() {
-		
+
 		return transactionRepository.findAll();
 	}
 }

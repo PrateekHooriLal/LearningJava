@@ -30,19 +30,17 @@ public class TransactionServiceTest {
 	@InjectMocks
 	private TransactionService transactionService;
 
+	@Mock
 	private Transaction transaction;
 
-	@BeforeEach
-	public void setUp() {
-		// Initialize a sample transaction object
-		transaction = new Transaction();
-		transaction.setId(103L);
-		transaction.setAccountNumber("123456789");
-		transaction.setAmount(new BigDecimal("250.00"));
-		transaction.setStatus("PENDING");
-		transaction.setTransactionType("debit");
-		transaction.setTimeStamp(LocalDateTime.now());
-	}
+	/*
+	 * @BeforeEach public void setUp() { // Initialize a sample transaction object
+	 * transaction = new Transaction(); transaction.setId(103L);
+	 * transaction.setAccountNumber("123456789"); transaction.setAmount(new
+	 * BigDecimal("250.00")); transaction.setStatus("PENDING");
+	 * transaction.setTransactionType("debit");
+	 * transaction.setTimeStamp(LocalDateTime.now()); }
+	 */
 	
 
 	@Test
@@ -55,4 +53,8 @@ public class TransactionServiceTest {
 	}
 
 	// Additional test cases for other CRUD operations if any
+	@Test
+	public void testUpdateTransaction() {
+		
+	}
 }

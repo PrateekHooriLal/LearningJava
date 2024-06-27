@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 public class HashMapDemo {
 
-	HashMap map = new HashMap<String, String>();
+	HashMap<String, String> map = new HashMap<String, String>();
 
-	public static void main(int args[]) {
+	public static void main(String args[]) {
 		System.out.println("Hello11");
 	}
 

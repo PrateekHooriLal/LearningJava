@@ -4,8 +4,8 @@ public class concrete extends DemoAbstract {
 
 	public static void main(String[] args) {
 
-		// creating objject.
-		DemoAbstract obj = new concrete();
+		// creating object.
+		concrete obj = new concrete();
 		obj.abst_method1();
 		obj.concrete_method1();
 		obj.abst_method1();

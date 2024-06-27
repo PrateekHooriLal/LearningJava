@@ -1,4 +1,4 @@
-package com.print.Mydate;
+package com.java.multithreading.demo;
 
 import java.awt.EventQueue;
 
