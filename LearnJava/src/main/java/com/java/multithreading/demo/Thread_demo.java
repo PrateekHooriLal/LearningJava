@@ -34,10 +34,8 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 		stop.addActionListener(this);
 		setparam();
 		addWindowListener(new WindowAdapter() {
-
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
-
 			}
 		});
 
@@ -52,9 +50,9 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 	}// parameter function ends
 
 	public void start_thread() {
-		t1 = new Thread(this);
-		t2 = new Thread(this);
-		t3 = new Thread(this);
+		//t1 = new Thread(this);
+		//t2 = new Thread(this);
+		//t3 = new Thread(this);
 		flag = true;
 		t1.start();
 		t2.start();
@@ -70,7 +68,7 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 		g.setColor(Color.BLACK);
 
 		g.fillOval(t3x, t3y, 20, 20);
-		g.setColor(Color.GREEN);
+		g.setColor(Color.YELLOW);
 
 	}
 
@@ -81,15 +79,13 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 				try {
 					if (Thread.currentThread() == t1) {
 						t1x = t1x + 15;
-						Thread.sleep(90);// as sleep is a static method should
-											// called using class name..
+						Thread.sleep(90);// as sleep is a static method should called using class name..
 						if (t1x > 500) {
 							t1.wait();
 						}
 						repaint();
 					} // t1 if ends
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} // t1 sync block ends
@@ -98,8 +94,7 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 				try {
 					if (Thread.currentThread() == t2) {
 						t2x = t2x + 20;
-						Thread.sleep(90);// as sleep is a static method should
-											// called using class name..
+						Thread.sleep(90);// as sleep is a static method should called using class name..
 						if (t2x > 500) {
 							t2.wait();
 
@@ -107,7 +102,6 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 						repaint();
 					} // t2 if ends
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} // t2 sync block ends
@@ -116,8 +110,7 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 				try {
 					if (Thread.currentThread() == t3) {
 						t3x = t3x + 5;
-						Thread.sleep(90);// as sleep is a static method should
-											// called using class name..
+						Thread.sleep(90);// as sleep is a static method should called using class name..
 						if (t3x > 500) {
 							notifyAll();
 							setparam();
@@ -141,7 +134,7 @@ public class Thread_demo extends Frame implements Runnable, ActionListener {
 
 	public static void main(String[] args) {
 		Thread_demo memo = new Thread_demo();
-		memo.setSize(500, 200);
+		memo.setSize(1000, 200);
 		memo.setVisible(true);
 		memo.start_thread();
 	}// main ends

@@ -40,15 +40,17 @@ public class ThreadDemo1 {
 
 		// Eg for public static final native yield() method
 
-		Thread.yield();/*
-						 * if we encounter yield here, main thread will pause Until child thread (i.e
-						 * t1) finishes execution.
-						 */
+		Thread.yield();
+		/*
+		 * if we encounter yield here, main thread will pause Until child thread (i.e
+		 * t1) finishes execution.
+		 */
 
-		t1.join();/*
-					 * if we encounter join here, main thread will wait(will go to Wait state) Until
-					 * child thread (i.e t1) finishes execution.
-					 */
+		t1.join();
+		/*
+		 * if we encounter join here, main thread will wait(will go to Wait state) Until
+		 * child thread (i.e t1) finishes execution.
+		 */
 
 		// Thread.sleep(1);
 		// some task for main method

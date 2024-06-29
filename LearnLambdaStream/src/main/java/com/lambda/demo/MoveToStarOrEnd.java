@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class MoveToStarOrEnd {
 
-	static int[] crunchifyData = { 1, 0, 0, 4, 4, 2, 0, 3, 0, 0, 4, 1 };// 1 2 3 4 0 0 0 0 0
+	static int[] crunchifyData = { 1, 99, 67, 1, 1, 74, 85, 1, 26, 37, 1 }; // { 1, 0, 0, 4, 4, 2, 0, 3, 0, 0, 4, 1 };//
+																			// 1 2 3 4 0 0 0 0 0
 
 	public static void main(String[] args) {
 
@@ -43,7 +44,7 @@ public class MoveToStarOrEnd {
 		return arr;
 	}
 
-	public static int[] MoveToStart(int arr[], int pivot) {//without using extra variable for swapping
+	public static int[] MoveToStart(int arr[], int pivot) {// without using extra variable for swapping
 		int j = arr.length - 1;
 		for (int i = arr.length - 1; i >= 0; i--) {
 			if (crunchifyData[i] != pivot) {
