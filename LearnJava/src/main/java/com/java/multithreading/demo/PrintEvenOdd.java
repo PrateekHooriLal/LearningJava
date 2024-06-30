@@ -19,15 +19,17 @@ class PrintEvenOdd implements Runnable {
 	public void run() {
 
 		while (num < maxNum) {
-
 			synchronized (lock) {
-				System.out.println(Thread.currentThread().getName() + "Num="+num+" CalRemainder=" + num % 2 + "::Remainder:" + remainder);
+	//System.out.println(Thread.currentThread().getName() + " Num=" + num + " CalRemainder=" + num % 2+ "::Remainder:" + remainder);
+
+				boolean flag = false;
 				if (num % 2 != remainder) {
 					try {
-						lock.wait();
+						lock.wait(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					
 				}
 				if (num % 2 == remainder) {
 					System.out.println(Thread.currentThread().getName() + "::" + num++);
@@ -40,8 +42,8 @@ class PrintEvenOdd implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		Thread t1 = new Thread(new PrintEvenOdd(1, 200, 0), "Even");
-		Thread t2 = new Thread(new PrintEvenOdd(1, 200, 1), "Odd ");
+		Thread t1 = new Thread(new PrintEvenOdd(1, 100, 0), "Even");
+		Thread t2 = new Thread(new PrintEvenOdd(1, 100, 1), "Odd ");
 		t1.start();
 		t2.start();
 	}

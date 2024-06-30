@@ -7,9 +7,9 @@ public class Accolite {
 		String data = "a,b,c,d e,f,g,h i,j,k,l m,n,o,p q,r,s,t x,y,z,g n,v,x,z,o";
 		calculations(data.replaceAll(",", ""));
 
-   //		output:
-  //	 [[a, e, i, m, q], 
- //		 [b, f, j, n, r], 
+		// output:
+		// [[a, e, i, m, q],
+		// [b, f, j, n, r],
 //		 [c, g, k, o, s]]		 
 	}
 
@@ -21,10 +21,10 @@ public class Accolite {
 			// System.out.print(blockList.length);
 
 			for (int j = 0; j < blockList.length; j++) {
-				//System.out.println("i=" + i + " j=" + j + " ");
+				// System.out.println("i=" + i + " j=" + j + " ");
 				if (i <= blockList[j].length() - 1)
 					System.out.print(blockList[j].charAt(i) + " ");
-				else if(blockList[j].length() - 1 >= i)
+				else if (blockList[j].length() - 1 >= i)
 					System.out.print(blockList[j].charAt(i) + " ");
 
 			}
