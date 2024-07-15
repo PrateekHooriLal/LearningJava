@@ -24,7 +24,6 @@ import java.util.Scanner;
 public class StringPermutation {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		System.out.println("enter the String for permutation:");
 		Scanner sc = new Scanner(System.in);
@@ -50,13 +49,13 @@ public class StringPermutation {
 	 */
 
 	private static void permutation(String perm, String word) {
-		System.out.println("in the method " + Thread.currentThread().getName());
+		//System.out.println("in the method " + Thread.currentThread().getName());
 
 		if (word.isEmpty()) {
 			System.err.println(perm + word);
 		} else {
 			for (int i = 0; i < word.length(); i++) {
-				System.out.println("in the loop " + i);
+				//System.out.println("in the loop " + i);
 				permutation(perm + word.charAt(i), word.substring(0, i) + word.substring(i + 1, word.length()));
 			}
 		}

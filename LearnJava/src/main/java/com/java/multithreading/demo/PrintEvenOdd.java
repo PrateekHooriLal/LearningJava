@@ -11,7 +11,7 @@ class PrintEvenOdd implements Runnable {
 		this.maxNum = maxNum;
 		this.remainder = remainder;
 		PrintEvenOdd.lock = new Object();
-		this.num = num;
+		PrintEvenOdd.num = num;
 
 	}
 
@@ -20,20 +20,30 @@ class PrintEvenOdd implements Runnable {
 
 		while (num < maxNum) {
 			synchronized (lock) {
-	//System.out.println(Thread.currentThread().getName() + " Num=" + num + " CalRemainder=" + num % 2+ "::Remainder:" + remainder);
+				// System.out.println(Thread.currentThread().getName() + " Num=" + num + "
+				// CalRemainder=" + num % 2+ "::Remainder:" + remainder);
 
-				boolean flag = false;
 				if (num % 2 != remainder) {
 					try {
-						lock.wait(100);
+						lock.wait();
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					
+
+				}
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 				if (num % 2 == remainder) {
 					System.out.println(Thread.currentThread().getName() + "::" + num++);
 					lock.notify();
+				}
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}
 
@@ -46,5 +56,6 @@ class PrintEvenOdd implements Runnable {
 		Thread t2 = new Thread(new PrintEvenOdd(1, 100, 1), "Odd ");
 		t1.start();
 		t2.start();
+		
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.transaction.manager.entity.Transaction;
 import com.transaction.manager.repository.TransactionRepository;
@@ -12,6 +13,9 @@ import com.transaction.manager.repository.TransactionRepository;
 @Service
 public class TransactionService {
 
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	@Autowired
 	private TransactionRepository transactionRepository;
 

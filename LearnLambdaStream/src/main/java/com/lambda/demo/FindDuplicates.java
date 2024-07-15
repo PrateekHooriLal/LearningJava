@@ -21,7 +21,7 @@ public class FindDuplicates {
 
 		Map<Integer, Long> map = list.stream()
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-		System.out.println(map);
+		System.out.println(map);	
 
 		List<Integer> dup = map.entrySet().stream().filter(entry -> entry.getValue() > 1).map(e -> e.getKey()).toList();
 		System.out.println(dup);

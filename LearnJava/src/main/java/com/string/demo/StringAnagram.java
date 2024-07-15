@@ -35,7 +35,7 @@ public class StringAnagram {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(StringAnagram.isAnagram("army", "mary"));
+		System.out.println(StringAnagram.isAnagram("army", "marw"));
 	}// main ends
 
 	/**
@@ -55,12 +55,13 @@ public class StringAnagram {
 		// convert any one strng to char array
 		char[] ch = i.toCharArray();
 
-		// converting second string to string builder as it will not create
-		// garbage string while processing.
+		// converting second string to string builder as it will not create garbage
+		// string while processing.
 		StringBuilder sb = new StringBuilder(j);
 
 		for (char c : ch) {
-			int index = sb.indexOf(Character.toString(c));// we can pass ""+c which will give indexOf an string input.
+			int index = sb.indexOf(Character.toString(c));
+			// we can pass ""+c which will give indexOf an string input.
 
 			// traverse through the array and delete the characters at the
 			// index.s

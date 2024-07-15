@@ -28,13 +28,13 @@ public class StreamCreation {
 		Collections.sort(emplist);
 
 		// Let’s first obtain a stream from an existing array:
-		Stream<Employee> s = Stream.of(arrayOfEmps);
+		//Stream<Employee> s = Stream.of(arrayOfEmps);
 
-		System.out.println("Sorted in Ascending:");
-		sortEmpSalaryAesc(s, "Salary").forEach(t -> t.printEmp());
+		//System.out.println("Sorted in Ascending:");
+		//sortEmpSalaryAesc(s, "Salary").forEach(t -> t.printEmp());
 
-		System.out.println("\n \nSorted in Descending:");
-		sortEmpSalaryDesc(emplist.stream()).forEach(e -> e.printEmp());
+		//System.out.println("\n \nSorted in Descending:");
+		//sortEmpSalaryDesc(emplist.stream()).forEach(e -> e.printEmp());
 
 		System.out.print("Find Max Emp with salary = ");
 		findMaxSalary(emplist).get().printEmp();
@@ -57,5 +57,6 @@ public class StreamCreation {
 		return emplist.stream().max(Comparator.comparing(Employee::getSalary));
 	}
 
+	public static map 
 	
 }

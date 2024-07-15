@@ -13,8 +13,7 @@ public class concrete extends DemoAbstract {
 
 	@Override
 	public void abst_method1() {
-		// TODO Auto-generated method stub
-		System.out.println("Abstract metho defined in child class");
+		
 	}
 
 	@Override

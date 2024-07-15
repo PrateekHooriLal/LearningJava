@@ -4,13 +4,12 @@ public class Mainthread {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		PrintNumber obj = new PrintNumber(1, 50);
-		Thread t1 = new Thread(obj, "Even");
-		t1.start();
-
 		// Spawning Thread by passing object of class implementing Runnable Interface
-		Thread t2 = new Thread(obj, "Odd");
-		t2.start();
+		PrintNumber obj = new PrintNumber(1, 100);
+		Thread even = new Thread(obj, "Even");
+		Thread odd = new Thread(obj, "Odd");
+		even.start();
+		odd.start();
 
 		// creating thread using lambda expression
 		Thread t3 = new Thread(() -> {

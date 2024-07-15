@@ -4,14 +4,13 @@ import java.util.Scanner;
 
 public class MoveToStarOrEnd {
 
-	static int[] crunchifyData = { 1, 99, 67, 1, 1, 74, 85, 1, 26, 37, 1 }; // { 1, 0, 0, 4, 4, 2, 0, 3, 0, 0, 4, 1 };//
-																			// 1 2 3 4 0 0 0 0 0
+	static int[] arr = { 1, 99, 67, 1, 1, 74, 85, 1, 26, 37, 1 };
 
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Original Array : ");
-		for (int i : crunchifyData) {
+		for (int i : arr) {
 			System.out.print(i + " ");
 		}
 
@@ -19,41 +18,43 @@ public class MoveToStarOrEnd {
 		int pivot = sc.nextInt();
 
 		System.out.print("Given Number Moved to End:   ");
-		MoveToEnd(crunchifyData, pivot);
-		for (int i : crunchifyData) {
+		MoveToEnd(arr, pivot);
+		for (int i : arr) {
 			System.out.print(i + " ");
 		}
 		System.out.println();
 		System.out.print("Given Number Moved to Start: ");
-		MoveToStart(crunchifyData, pivot);
-		for (int i : crunchifyData) {
+		MoveToStart(arr, pivot);
+		for (int i : arr) {
 			System.out.print(i + " ");
 		}
 	}
 
 	public static int[] MoveToEnd(int[] arr, int pivot) {
 		int j = 0;
-		for (int i = 0; i < crunchifyData.length; i++) {
-			if (crunchifyData[i] != pivot) {
-				int temp = crunchifyData[j];
-				crunchifyData[j] = crunchifyData[i];
-				crunchifyData[i] = temp;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != pivot) {
+				int temp = arr[j];
+				arr[j] = arr[i];
+				arr[i] = temp;
 				j++;
 			}
 		}
 		return arr;
 	}
 
-	public static int[] MoveToStart(int arr[], int pivot) {// without using extra variable for swapping
+	public static int[] MoveToStart(int arr[], int pivot) {
 		int j = arr.length - 1;
 		for (int i = arr.length - 1; i >= 0; i--) {
-			if (crunchifyData[i] != pivot) {
-				crunchifyData[j] += crunchifyData[i];
-				crunchifyData[i] = crunchifyData[j] - crunchifyData[i];
-				crunchifyData[j] = crunchifyData[j] - crunchifyData[i];
+			if (arr[i] != pivot) {
+				// swapping without using extra variable for swapping
+				arr[j] += arr[i];
+				arr[i] = arr[j] - arr[i];
+				arr[j] = arr[j] - arr[i];
 				j--;
 			}
 		}
 		return arr;
+
 	}
 }

@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-class Test {
+class EmployeeStreamFunction {
 	public static void main(String[] args) {
 		List<String> skills = new ArrayList<>();
 		skills.add("Java");
@@ -32,16 +32,27 @@ class Test {
 		// employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment),)
 
 		// Highest exp employee
-		Optional<Employee> highestEmp = employeeList.stream().max(Comparator.comparing(Employee::getExperience));
-		System.out.println("Highest Experience Employee:>>" + highestEmp.get().toString());
-
+		/*
+		 * Optional<Employee> highestEmp =
+		 * employeeList.stream().max(Comparator.comparing(Employee::getExperience));
+		 * System.out.println("Highest Experience Employee:>>" +
+		 * highestEmp.get().toString());
+		 */
 		// avg exp of emp in each dept{dept,avg}
 		Map<String, Double> avgEmp = employeeList.stream().collect(
 				Collectors.groupingBy(Employee::getDepartment, Collectors.averagingDouble(Employee::getExperience)));
 		System.out.println(avgEmp);
 
-		//3rd highest salary
-		//employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartmen, Collectors.toMa))
+		// 3rd highest salary
+		// employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartmen,
+		// Collectors.toMa))
+
+		// group by department second high Salary
+		Map depSecHighest = employeeList.stream()
+				.collect(Collectors.groupingBy(Employee::getDepartment,
+						Collectors.collectingAndThen(Collectors.mapping(Function.identity(), Collectors.toList()),
+								list -> list.stream().sorted(Comparator.comparingInt(Employee::getAge).reversed())
+										.skip(1).findFirst())));
 
 	}
 }

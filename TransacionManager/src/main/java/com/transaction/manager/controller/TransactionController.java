@@ -16,7 +16,7 @@ import com.transaction.manager.entity.Transaction;
 import com.transaction.manager.service.TransactionService;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/transactions/v1")
 public class TransactionController {
 
 	@Autowired

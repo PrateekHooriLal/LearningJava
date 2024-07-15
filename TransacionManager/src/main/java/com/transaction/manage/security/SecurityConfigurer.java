@@ -5,7 +5,6 @@ import org.springframework.boot.actuate.autoconfigure.security.servlet.Managemen
 public class SecurityConfigurer extends ManagementWebSecurityAutoConfiguration {
 
 	public SecurityConfigurer() {
-		// TODO Auto-generated constructor stub
 	}
 
 }
