@@ -12,7 +12,6 @@ public class SubsequenceInString {
 	static List<String> subseqlist = new ArrayList<String>();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		String s = "Amon";
 		HashSet<String> set = new HashSet<String>();
@@ -35,7 +34,7 @@ public class SubsequenceInString {
 		 */
 		System.out.println(Math.pow(2, 5));
 
-        ///generateSubsequences(s).forEach(System.out::println);
+		generateSubsequences(s).forEach(System.out::print);
 
 	}
 
@@ -49,7 +48,7 @@ public class SubsequenceInString {
 		}
 
 		/*
-		 * While Pick so in picking we will attach(concatenate) the picked char i,e
+		 * While Pick, so in picking we will attach(concatenate) the picked char i,e
 		 * chrAt(0) to the subsequence.
 		 */
 		findSubsequence(s.substring(1), subeq + s.charAt(0));

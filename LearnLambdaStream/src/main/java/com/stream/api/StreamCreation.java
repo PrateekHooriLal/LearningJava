@@ -57,6 +57,6 @@ public class StreamCreation {
 		return emplist.stream().max(Comparator.comparing(Employee::getSalary));
 	}
 
-	public static map 
+	//public static map 
 	
 }

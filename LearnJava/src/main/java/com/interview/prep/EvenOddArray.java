@@ -1,12 +1,13 @@
-package com.transaction.manager;
+package com.interview.prep;
 
 /*Given two sorted arrays:
 Array 1: [1, 3, 8, 12, 15, 21, 42, 49, 99]
 Array 2: [5, 7, 10, 20, 51, 80, 91]
 Create two new arrays containing the even and odd values from both arrays.*/
-public class Demo1 {
+public class EvenOddArray {
 
 	public static void main(String[] args) {
+
 		int Arr1[] = { 1, 3, 8, 12, 15, 21, 42, 49, 99 };
 		int Arr2[] = { 5, 7, 10, 20, 51, 80, 91 };
 
@@ -62,14 +63,14 @@ public class Demo1 {
 					odd[indxO++] = Arr2[indx1++];
 			}
 		}
-		System.out.print("Even=" );
+		System.out.print("Even=");
 		for (int i : even) {
-			System.out.print(" "+i);
+			System.out.print(" " + i);
 		}
 		System.out.println();
 		System.out.print("Odd=");
 		for (int i : odd) {
-			System.out.print(" "+i);
+			System.out.print(" " + i);
 
 		}
 	}
