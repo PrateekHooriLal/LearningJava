@@ -11,6 +11,14 @@
 	<name>LearnJava</name>
 	<url>http://maven.apache.org</url>
 
+	<properties>
+		<!-- Java 21 — current LTS. Required for: Records, Sealed Classes,
+		     Pattern Matching for switch, Virtual Threads (Project Loom),
+		     Record Patterns, Sequenced Collections -->
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+	</properties>
+
 	<dependencies>
 		<!--
 		https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
