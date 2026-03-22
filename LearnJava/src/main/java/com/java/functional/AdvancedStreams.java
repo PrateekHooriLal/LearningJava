@@ -155,8 +155,8 @@ public class AdvancedStreams {
     public static <T extends Comparable<T>> MinMax<T> minMaxInOnePass(Stream<T> stream) {
         return stream.collect(
             Collectors.teeing(
-                Collectors.minBy(Comparator.naturalOrder()),  // c1: find min
-                Collectors.maxBy(Comparator.naturalOrder()),  // c2: find max
+                Collectors.<T>minBy(Comparator.naturalOrder()),  // c1: find min
+                Collectors.<T>maxBy(Comparator.naturalOrder()),  // c2: find max
                 (min, max) -> new MinMax<>(                   // merge results
                     min.orElseThrow(),
                     max.orElseThrow()

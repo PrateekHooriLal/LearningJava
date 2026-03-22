@@ -1,6 +1,6 @@
 package com.program.solution;
 
-import com.java.sorting.Sorting;
+import com.java.ds.sorting.Sorting;
 
 public class RearrangeIntegersArray extends Sorting {
 

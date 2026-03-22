@@ -8,9 +8,9 @@ package com.java.functional;
  *
  * PRAGMATIC DEFINITION (for interviews):
  *   A monad is a wrapper type M<T> with two operations:
- *     1. unit (wrap): T → M<T>          (e.g., Optional.of(x), CompletableFuture.completedFuture(x))
- *     2. flatMap:     M<T> → (T → M<U>) → M<U>  (chain operations, flatten nesting)
- *   Plus map:         M<T> → (T → U) → M<U>    (transform value, keep wrapper)
+ *     1. unit (wrap): T -> M<T>          (e.g., Optional.of(x), CompletableFuture.completedFuture(x))
+ *     2. flatMap:     M<T> -> (T -> M<U>) -> M<U>  (chain operations, flatten nesting)
+ *   Plus map:         M<T> -> (T -> U) -> M<U>    (transform value, keep wrapper)
  *
  * THREE MONAD LAWS (for interview bonus points):
  *   1. Left Identity:   unit(a).flatMap(f) == f(a)
@@ -18,7 +18,7 @@ package com.java.functional;
  *   2. Right Identity:  m.flatMap(unit) == m
  *      "flatMapping with the wrap function gives back the same monad"
  *   3. Associativity:   m.flatMap(f).flatMap(g) == m.flatMap(x -> f(x).flatMap(g))
- *      "Chaining order doesn't matter — grouping of flatMaps is associative"
+ *      "Chaining order doesn't matter -- grouping of flatMaps is associative"
  *
  * WHEN TO USE:
  *   - Optional: null-safe computation chains (replace null checks)
@@ -28,35 +28,35 @@ package com.java.functional;
  *
  * INTERVIEW ANGLE:
  *   Q: Is Optional a monad?
- *   A: Yes — it has unit (Optional.of), flatMap (Optional.flatMap), map (Optional.map).
+ *   A: Yes -- it has unit (Optional.of), flatMap (Optional.flatMap), map (Optional.map).
  *      And it satisfies the three monad laws.
  *      CAVEAT: Optional.map wraps the result back in Optional.
  *              Optional.flatMap expects the function to return Optional (no double wrapping).
  *
  *   Q: What is the difference between map and flatMap on Optional?
- *   A: map:     Optional<T> → (T → U) → Optional<U>
+ *   A: map:     Optional<T> -> (T -> U) -> Optional<U>
  *               The function returns U; map wraps it in Optional automatically.
- *      flatMap: Optional<T> → (T → Optional<U>) → Optional<U>
+ *      flatMap: Optional<T> -> (T -> Optional<U>) -> Optional<U>
  *               The function itself returns Optional<U>; flatMap doesn't double-wrap.
  *      If you use map with a function that returns Optional<U>, you get Optional<Optional<U>>. BAD.
  *      Use flatMap when the transformation itself might fail (returns Optional).
  *
  *   Q: What is the difference between thenApply and thenCompose on CompletableFuture?
- *   A: thenApply:   CF<T> → (T → U) → CF<U>               [like map]
- *      thenCompose: CF<T> → (T → CF<U>) → CF<U>            [like flatMap]
+ *   A: thenApply:   CF<T> -> (T -> U) -> CF<U>               [like map]
+ *      thenCompose: CF<T> -> (T -> CF<U>) -> CF<U>            [like flatMap]
  *      Same rule: use thenCompose when the transformation returns a CompletableFuture.
  *
  * REAL-WORLD USE:
- *   - Optional chain: parse → validate → lookup → transform (each step might return empty)
- *   - Result chain: validate → persist → notify (each step might fail)
- *   - CF chain: fetchUser → fetchOrders → enrichOrders (async pipeline)
+ *   - Optional chain: parse -> validate -> lookup -> transform (each step might return empty)
+ *   - Result chain: validate -> persist -> notify (each step might fail)
+ *   - CF chain: fetchUser -> fetchOrders -> enrichOrders (async pipeline)
  *
  * GOTCHA:
  *   - Optional.get() without isPresent(): throws NoSuchElementException. NEVER do this.
  *   - Optional.orElse() vs orElseGet(): orElse always evaluates its argument (eager).
  *   - Optional is for RETURN TYPES only. Do NOT use as field type (increases object count).
- *   - Do NOT create Optional<Optional<T>> — use flatMap to avoid nesting.
- *   - CompletableFuture.get() blocks the thread — defeats async purpose. Use join() or thenApply.
+ *   - Do NOT create Optional<Optional<T>> -- use flatMap to avoid nesting.
+ *   - CompletableFuture.get() blocks the thread -- defeats async purpose. Use join() or thenApply.
  */
 
 import java.util.*;
@@ -67,7 +67,7 @@ import java.util.stream.*;
 public class MonadPatterns {
 
     // =========================================================================
-    // SECTION 1: Optional as a Monad — Comprehensive Guide
+    // SECTION 1: Optional as a Monad -- Comprehensive Guide
     // =========================================================================
 
     /**
@@ -76,29 +76,29 @@ public class MonadPatterns {
      *
      * MENTAL MODEL: Optional<T> = box that contains either one value or nothing.
      *   map and flatMap "open the box", apply a function, and "close it" again.
-     *   If the box is empty, all operations are skipped → no NullPointerException.
+     *   If the box is empty, all operations are skipped -> no NullPointerException.
      *
      * OPTIONAL CREATION:
-     *   Optional.of(value)           — value MUST be non-null (else NullPointerException)
-     *   Optional.ofNullable(value)   — value can be null (returns empty if null)
-     *   Optional.empty()             — explicitly absent
+     *   Optional.of(value)           -- value MUST be non-null (else NullPointerException)
+     *   Optional.ofNullable(value)   -- value can be null (returns empty if null)
+     *   Optional.empty()             -- explicitly absent
      *
      * ANTI-PATTERNS (mention in interview):
-     *   1. optional.get() without isPresent()  → NoSuchElementException (worse than NPE!)
-     *   2. Optional<T> as field type           → extra object per instance, bad for GC
-     *   3. Optional<T> as method parameter     → use method overloading instead
-     *   4. Optional.of(null)                   → NullPointerException at construction!
+     *   1. optional.get() without isPresent()  -> NoSuchElementException (worse than NPE!)
+     *   2. Optional<T> as field type           -> extra object per instance, bad for GC
+     *   3. Optional<T> as method parameter     -> use method overloading instead
+     *   4. Optional.of(null)                   -> NullPointerException at construction!
      */
     public static void demonstrateOptionalAsMonad() {
         System.out.println("=== Optional as Monad ===");
 
-        // map: T → U, Optional handles wrapping
+        // map: T -> U, Optional handles wrapping
         Optional<String> name = Optional.of("  alice  ");
         Optional<String> trimmed = name.map(String::trim);
         Optional<Integer> length = trimmed.map(String::length);
         System.out.println("  map chain: " + length);  // Optional[5]
 
-        // flatMap: T → Optional<U>, no double wrapping
+        // flatMap: T -> Optional<U>, no double wrapping
         // Scenario: lookup a user's city
         Optional<String> user   = Optional.of("alice");
         Optional<String> city   = user.flatMap(MonadPatterns::lookupCity);
@@ -154,7 +154,7 @@ public class MonadPatterns {
         present.orElse("default " + (++callCount[0])); // default evaluated!
         System.out.println("  orElse ran even with present Optional: callCount=" + callCount[0]); // 1
 
-        // orElseGet: LAZY — only runs if Optional is empty
+        // orElseGet: LAZY -- only runs if Optional is empty
         callCount[0] = 0;
         present.orElseGet(() -> "default " + (++callCount[0])); // NOT called
         System.out.println("  orElseGet SKIPPED with present Optional: callCount=" + callCount[0]); // 0
@@ -201,10 +201,10 @@ public class MonadPatterns {
      *   List<String> values = optionals.stream()
      *       .flatMap(Optional::stream)  // Optional.stream() returns Stream of 0 or 1 elements
      *       .toList();
-     *   // → ["a", "c"]  (empties dropped!)
+     *   // -> ["a", "c"]  (empties dropped!)
      */
     public static void demonstrateOptionalStream() {
-        System.out.println("\n=== Optional.stream() — Bridge to Stream API ===");
+        System.out.println("\n=== Optional.stream() -- Bridge to Stream API ===");
 
         List<Optional<String>> mixed = List.of(
             Optional.of("alice"),
@@ -215,7 +215,7 @@ public class MonadPatterns {
         );
 
         // Without stream(): have to check each manually
-        // With stream(): flatten all to Stream<String>, empties become empty stream → dropped
+        // With stream(): flatten all to Stream<String>, empties become empty stream -> dropped
         List<String> present = mixed.stream()
             .flatMap(Optional::stream)  // KEY: Optional.stream() gives 0 or 1 element stream
             .toList();
@@ -237,7 +237,7 @@ public class MonadPatterns {
     }
 
     // =========================================================================
-    // SECTION 2: Custom Result<T,E> Monad — Sealed Interface
+    // SECTION 2: Custom Result<T,E> Monad -- Sealed Interface
     // =========================================================================
 
     /**
@@ -246,22 +246,22 @@ public class MonadPatterns {
      * PROBLEM with exceptions for expected failures:
      *   parseAge("abc") could throw NumberFormatException.
      *   If every method throws, you get try-catch chains (spaghetti code).
-     *   You can accidentally swallow exceptions (catch(Exception e) { /* ignore */ }).
+     *   You can accidentally swallow exceptions (catch(Exception e) { // ignore }).
      *
      * SOLUTION with Result<T>:
      *   parseAge("abc") returns Result.failure(new NumberFormatException(...)).
-     *   The caller MUST handle both Success and Failure — compiler enforces it.
-     *   Failure chains through map/flatMap automatically — no need for try-catch at each step.
+     *   The caller MUST handle both Success and Failure -- compiler enforces it.
+     *   Failure chains through map/flatMap automatically -- no need for try-catch at each step.
      *
      * MONAD LAWS CHECK:
-     *   Left identity:   Result.success(x).flatMap(f) == f(x)      ✓
-     *   Right identity:  result.flatMap(Result::success) == result   ✓
+     *   Left identity:   Result.success(x).flatMap(f) == f(x)      (ok)
+     *   Right identity:  result.flatMap(Result::success) == result   (ok)
      *   Associativity:   result.flatMap(f).flatMap(g) ==
-     *                    result.flatMap(x -> f(x).flatMap(g))        ✓
+     *                    result.flatMap(x -> f(x).flatMap(g))        (ok)
      *
      * SEALED INTERFACE + PERMITS (Java 17+):
      *   sealed ensures ONLY Success<T> and Failure<T> can implement Result<T>.
-     *   switch on sealed type → compiler enforces exhaustiveness (no default needed).
+     *   switch on sealed type -> compiler enforces exhaustiveness (no default needed).
      */
     public sealed interface Result<T> permits MonadPatterns.Ok, MonadPatterns.Err {
         boolean isOk();
@@ -311,7 +311,7 @@ public class MonadPatterns {
         @Override public String toString() { return "Err(" + errorMessage + ")"; }
     }
 
-    // Chain of operations where any can fail — no try-catch at each step:
+    // Chain of operations where any can fail -- no try-catch at each step:
     public static Result<String> processUserInput(String input) {
         return Result.tryOf(() -> input.trim())                    // step 1: trim (can't fail, but consistent)
             .flatMap(s -> s.isEmpty()
@@ -327,15 +327,15 @@ public class MonadPatterns {
 
         // Happy path
         Result<String> success = processUserInput("  21  ");
-        System.out.println("  '  21  ' → " + success);
+        System.out.println("  '  21  ' -> " + success);
 
         // Empty input fails at step 2
         Result<String> emptyFail = processUserInput("   ");
-        System.out.println("  '   ' → " + emptyFail);
+        System.out.println("  '   ' -> " + emptyFail);
 
         // Non-numeric fails at step 3
         Result<String> parseFail = processUserInput("abc");
-        System.out.println("  'abc' → " + parseFail);
+        System.out.println("  'abc' -> " + parseFail);
 
         // Failure propagates through map/flatMap (no NullPointerException, no swallowed exception):
         Result<String> afterMoreOps = emptyFail
@@ -376,11 +376,11 @@ public class MonadPatterns {
     /**
      * KEY INSIGHT: Stream<T> is a monad for lazy sequences.
      *
-     *   unit:     Stream.of(x)     — wrap one element
-     *   map:      stream.map(f)    — transform each element
-     *   flatMap:  stream.flatMap(f) — expand each element to a stream, flatten
+     *   unit:     Stream.of(x)     -- wrap one element
+     *   map:      stream.map(f)    -- transform each element
+     *   flatMap:  stream.flatMap(f) -- expand each element to a stream, flatten
      *
-     * LAZINESS: Stream operations are lazy — no computation until a terminal op.
+     * LAZINESS: Stream operations are lazy -- no computation until a terminal op.
      * Each intermediate op creates a new "stage" in a lazy pipeline.
      * The terminal op (collect, forEach, sum) triggers the pipeline.
      *
@@ -390,7 +390,7 @@ public class MonadPatterns {
      *   Associativity:  see monad law 3
      *
      * STREAM LAZINESS EXAMPLE:
-     *   Stream.iterate(0, n -> n + 1)  // infinite stream — not computed yet
+     *   Stream.iterate(0, n -> n + 1)  // infinite stream -- not computed yet
      *         .filter(n -> n % 2 == 0)  // still lazy
      *         .map(n -> n * n)          // still lazy
      *         .limit(5)                 // still lazy
@@ -400,15 +400,15 @@ public class MonadPatterns {
     public static void demonstrateStreamAsMonad() {
         System.out.println("\n=== Stream as Monad ===");
 
-        // flatMap: each element → stream, then flatten
+        // flatMap: each element -> stream, then flatten
         List<String> sentences = List.of("hello world", "java streams are cool");
         List<String> words = sentences.stream()
-            .flatMap(s -> Arrays.stream(s.split(" ")))  // each sentence → word stream
+            .flatMap(s -> Arrays.stream(s.split(" ")))  // each sentence -> word stream
             .toList();
         System.out.println("  Words via flatMap: " + words);
 
         // Stream monad for number expansion:
-        // Each number n → Stream of [n, n*n]
+        // Each number n -> Stream of [n, n*n]
         List<Integer> expanded = Stream.of(1, 2, 3, 4, 5)
             .flatMap(n -> Stream.of(n, n * n))
             .toList();
@@ -417,14 +417,14 @@ public class MonadPatterns {
         // Stream laziness demo:
         System.out.println("\n  Laziness demo:");
         long count = Stream.iterate(0, n -> n + 1)
-            .peek(n -> {}) // invisible — only runs for consumed elements
+            .peek(n -> {}) // invisible -- only runs for consumed elements
             .filter(n -> n % 2 == 0)
             .map(n -> n * n)
             .limit(5)
             .peek(n -> System.out.print("  computed: " + n + " "))
             .count();
         System.out.println("\n  Count of elements: " + count);
-        // Only 0, 4, 16, 36, 64 are computed — stream stops at limit(5)
+        // Only 0, 4, 16, 36, 64 are computed -- stream stops at limit(5)
     }
 
     // =========================================================================
@@ -433,38 +433,38 @@ public class MonadPatterns {
 
     /**
      * KEY INSIGHT: CompletableFuture<T> is the async monad.
-     *   map    = thenApply(Function<T,U>)         — transform result (sync)
-     *   flatMap = thenCompose(Function<T,CF<U>>)   — chain async operations
+     *   map    = thenApply(Function<T,U>)         -- transform result (sync)
+     *   flatMap = thenCompose(Function<T,CF<U>>)   -- chain async operations
      *
      * MONAD OPERATIONS:
      *   unit:        CompletableFuture.completedFuture(x)
-     *   thenApply:   CF<T> → (T → U) → CF<U>
-     *   thenCompose: CF<T> → (T → CF<U>) → CF<U>  (FLATMAP for async)
+     *   thenApply:   CF<T> -> (T -> U) -> CF<U>
+     *   thenCompose: CF<T> -> (T -> CF<U>) -> CF<U>  (FLATMAP for async)
      *
      * GOTCHA: thenApply vs thenCompose (exactly like map vs flatMap on Optional):
      *   If your transformation function ALREADY returns CF<U>, use thenCompose.
-     *   Using thenApply would give CF<CF<U>> — a nested future!
+     *   Using thenApply would give CF<CF<U>> -- a nested future!
      *
      * ASYNC PIPELINE:
-     *   fetchUser(id)         → CF<User>
-     *   .thenApply(user → user.getName())   → CF<String>  (sync transform)
-     *   .thenCompose(name → fetchOrders(name)) → CF<List<Order>>  (async chain)
-     *   .thenApply(orders → orders.size())   → CF<Integer>
+     *   fetchUser(id)         -> CF<User>
+     *   .thenApply(user -> user.getName())   -> CF<String>  (sync transform)
+     *   .thenCompose(name -> fetchOrders(name)) -> CF<List<Order>>  (async chain)
+     *   .thenApply(orders -> orders.size())   -> CF<Integer>
      *
      * EXCEPTION HANDLING:
-     *   .exceptionally(ex → fallbackValue) — recover from exception
-     *   .handle((result, ex) → ...)        — handle both success and failure
-     *   .whenComplete((result, ex) → ...)  — side effect, doesn't change result
+     *   .exceptionally(ex -> fallbackValue) -- recover from exception
+     *   .handle((result, ex) -> ...)        -- handle both success and failure
+     *   .whenComplete((result, ex) -> ...)  -- side effect, doesn't change result
      *
      * COMBINING:
-     *   allOf(cf1, cf2, cf3)  — wait for all (returns CF<Void>)
-     *   anyOf(cf1, cf2, cf3)  — wait for first (returns CF<Object>)
-     *   thenCombine(cf2, fn)  — combine two CFs when both complete
+     *   allOf(cf1, cf2, cf3)  -- wait for all (returns CF<Void>)
+     *   anyOf(cf1, cf2, cf3)  -- wait for first (returns CF<Object>)
+     *   thenCombine(cf2, fn)  -- combine two CFs when both complete
      */
     public static void demonstrateCompletableFutureAsMonad() {
         System.out.println("\n=== CompletableFuture as Async Monad ===");
 
-        // Async pipeline: fetch user → fetch their orders → count orders
+        // Async pipeline: fetch user -> fetch their orders -> count orders
         CompletableFuture<Integer> orderCount =
             fetchUserAsync(42)                           // CF<String>
             .thenApply(user -> "user:" + user)          // thenApply = map (sync transform)
@@ -563,7 +563,7 @@ public class MonadPatterns {
         boolean law3 = left.equals(right);
         System.out.println("  Law 3 (Associativity):  " + law3);  // true
 
-        System.out.println("  All monad laws satisfied for Optional ✓");
+        System.out.println("  All monad laws satisfied for Optional (ok)");
     }
 
     // =========================================================================
@@ -584,11 +584,11 @@ public class MonadPatterns {
         System.out.println("\n=== INTERVIEW SUMMARY ===");
         System.out.println("Monad = wrapper with unit (wrap), map (transform), flatMap (chain + flatten)");
         System.out.println("3 Monad Laws: Left Identity, Right Identity, Associativity");
-        System.out.println("Optional.map: fn returns U → Optional wraps it");
-        System.out.println("Optional.flatMap: fn returns Optional<U> → no double wrapping");
-        System.out.println("CRITICAL: orElse is EAGER, orElseGet is LAZY — use orElseGet for expensive defaults");
-        System.out.println("Optional.stream(): bridge to Stream API — flatMap drops empties");
-        System.out.println("Result<T>: sealed Success|Failure — no swallowed exceptions, compiler-forced handling");
+        System.out.println("Optional.map: fn returns U -> Optional wraps it");
+        System.out.println("Optional.flatMap: fn returns Optional<U> -> no double wrapping");
+        System.out.println("CRITICAL: orElse is EAGER, orElseGet is LAZY -- use orElseGet for expensive defaults");
+        System.out.println("Optional.stream(): bridge to Stream API -- flatMap drops empties");
+        System.out.println("Result<T>: sealed Success|Failure -- no swallowed exceptions, compiler-forced handling");
         System.out.println("CF.thenApply = map (sync transform); CF.thenCompose = flatMap (async chain)");
         System.out.println("ANTI-PATTERNS: Optional.get() without check, Optional as field, Optional<Optional<T>>");
     }

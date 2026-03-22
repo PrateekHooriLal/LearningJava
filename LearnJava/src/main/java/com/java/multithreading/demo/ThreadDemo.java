@@ -20,7 +20,7 @@ public class ThreadDemo extends Frame implements Runnable, ActionListener {
 	int t1x, t2x, t3x, t1y, t2y, t3y;
 	boolean flag = true;
 
-	public Thread_demo() {
+	public ThreadDemo() {
 		super("My_Demo");
 		t1 = new Thread(this);
 		t2 = new Thread(this);
@@ -133,7 +133,7 @@ public class ThreadDemo extends Frame implements Runnable, ActionListener {
 	}
 
 	public static void main(String[] args) {
-		Thread_demo memo = new Thread_demo();
+		ThreadDemo memo = new ThreadDemo();
 		memo.setSize(1000, 200);
 		memo.setVisible(true);
 		memo.start_thread();
