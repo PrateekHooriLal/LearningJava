@@ -1,4 +1,4 @@
-package com.java.patterns.singleton;
+package com.java.patterns;
 
 /**
  * SINGLETON PATTERN — 4 Production-Quality Variants

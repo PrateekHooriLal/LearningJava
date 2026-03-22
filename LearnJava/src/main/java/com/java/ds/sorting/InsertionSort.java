@@ -1,4 +1,4 @@
-package com.java.sorting;
+package com.java.ds.sorting;
 
 /**
  * Advantages of Insertion Sort:

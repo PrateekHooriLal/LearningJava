@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Thread_demo extends Frame implements Runnable, ActionListener {
+public class ThreadDemo extends Frame implements Runnable, ActionListener {
 	/**
 	 * 
 	 */

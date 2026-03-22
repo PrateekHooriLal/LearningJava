@@ -1,4 +1,4 @@
-package com.java.patterns.factory;
+package com.java.patterns;
 
 /**
  * FACTORY METHOD + ABSTRACT FACTORY PATTERNS

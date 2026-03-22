@@ -1,4 +1,4 @@
-package com.java.sorting;
+package com.java.ds.sorting;
 
 import java.util.Collections;
 import java.util.List;

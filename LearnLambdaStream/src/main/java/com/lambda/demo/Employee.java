@@ -58,9 +58,23 @@ public class Employee {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		// BUG FIX: hashCode was overridden without equals — violates Java contract:
+		// "objects that are equal must have the same hashCode"
+		// Without equals(), two Employee objects with same name/dept would not be
+		// considered equal in HashMap/HashSet even though hashCode might match.
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass()) return false;
+		Employee other = (Employee) obj;
+		return age == other.age
+				&& Double.compare(experience, other.experience) == 0
+				&& java.util.Objects.equals(name, other.name)
+				&& java.util.Objects.equals(department, other.department);
+	}
+
+	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		return java.util.Objects.hash(name, experience, age, department);
 	}
 
 	@Override
