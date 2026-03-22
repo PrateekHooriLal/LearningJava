@@ -1,6 +1,6 @@
 package com.java.multithreading.demo;
 
-public class Mainthread {
+public class MainThread {
 
 	public static void main(String[] args) throws InterruptedException {
 

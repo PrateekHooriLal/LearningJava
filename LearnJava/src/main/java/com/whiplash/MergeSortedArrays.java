@@ -1,5 +1,8 @@
 package com.whiplash;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * @author plal
  *
@@ -15,9 +18,13 @@ public class MergeSortedArrays {
 		// TODO Auto-generated method stub
 
 		int a[] = { 1, 2, 3, 4, 0, 0, 0, 0 };
-		int b[] = { 2, 6, 7, 8 };
+		int b[] = { 2, 6,97, 7, 8 };
 		int na = 4;
 		int nb = 4;
+		int[] result = IntStream.concat(Arrays.stream(a), Arrays.stream(b))
+                .sorted()
+                .toArray();
+		System.out.println(Arrays.toString(result));
 
 		// first blindly copy the array bin a.
 		for (int i = 0; i < 8; i++) {

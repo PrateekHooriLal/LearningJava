@@ -1,4 +1,4 @@
-package com.java.patterns.builder;
+package com.java.patterns;
 
 /**
  * BUILDER PATTERN — Constructing Complex Objects Step by Step

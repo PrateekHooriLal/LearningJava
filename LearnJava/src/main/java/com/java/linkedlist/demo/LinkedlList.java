@@ -1,4 +1,4 @@
-package com.java.linkdlist.demo;
+package com.java.linkedlist.demo;
 
 public class LinkedlList {
 

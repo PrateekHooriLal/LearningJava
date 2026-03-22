@@ -15,12 +15,13 @@ public class CharFreqInListOfString {
 
 	public static void main(String[] args) {
 
-		List flatList = listOfLists.stream().flatMap(Collection::stream).collect(Collectors.toList());
-		System.out.println(flatList);
+		List flatList = listOfLists.stream().flatMap(Collection::stream).toList();
+		System.out.println("flatList=" + flatList);
 
 		Map<Character, Long> map = list.toString().replaceAll(" ", "").replaceAll(",", "").replaceAll("\\[", "")
 				.replaceAll("\\]", "").chars().mapToObj(c -> (char) c)
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 		System.out.println(map);
+		map.entrySet().forEach(System.out::println);
 	}
 }

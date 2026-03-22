@@ -1,4 +1,4 @@
-package com.java.sorting;
+package com.java.ds.sorting;
 
 /**
  * Selection Sort using Array.

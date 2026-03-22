@@ -3,7 +3,7 @@ package com.stream.api;
 public class StringAnagram {
 
 	public static void main(String[] args) {
-		System.out.println(StringAnagram.isAnagram("earth", "hwart"));
+		System.out.println(StringAnagram.isAnagram("earth", "harte"));
 	}// main ends
 
 	private static boolean isAnagram(String s1, String s2) {
