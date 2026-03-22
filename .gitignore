@@ -1,0 +1,7 @@
+.aider*
+.claude/
+.vscode/
+target/
+*.log
+build*.log
+run.log
