@@ -1,17 +1,20 @@
 package com.interview.entities;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Employee {
 	private String name;
 	private double experience;
+	private double salary;
 	private int age;
 	private List<String> skills;
 	private String department;
 
-	public Employee(String name, double experience, int age, List<String> skills, String department) {
+	public Employee(String name, double experience, double salary, int age, List<String> skills, String department) {
 		this.name = name;
 		this.experience = experience;
+		this.salary = salary;
 		this.age = age;
 		this.skills = skills;
 		this.department = department;
@@ -57,6 +60,25 @@ public class Employee {
 		this.department = department;
 	}
 
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	// Call Employee.getSampleEmployees() in any class to get test data
+	public static List<Employee> getSampleEmployees() {
+		return Arrays.asList(new Employee("Alice", 8.5, 75000, 30, Arrays.asList("Java", "Spring"), "Engineering"),
+				new Employee("Bob", 3.0, 45000, 25, Arrays.asList("Python"), "Engineering"),
+				new Employee("Charlie", 11.0, 90000, 35, Arrays.asList("Java", "AWS"), "Engineering"),
+				new Employee("Diana", 6.5, 60000, 28, Arrays.asList("Marketing"), "Marketing"),
+				new Employee("Eve", 2.0, 30000, 24, Arrays.asList("SEO"), "Marketing"),
+				new Employee("Frank", 9.0, 80000, 32, Arrays.asList("Finance"), "Finance"),
+				new Employee("Grace", 4.5, 55000, 29, Arrays.asList("Excel"), "Finance"));
+	}
+
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
@@ -65,7 +87,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", experience=" + experience + ", age=" + age + ", skills=" + skills
-				+ ", department=" + department + "]";
+		return "Employee [name=" + name + ", experience=" + experience + ", salary=" + salary + ", age=" + age
+				+ ", skills=" + skills + ", department=" + department + "]";
 	}
+
 }
