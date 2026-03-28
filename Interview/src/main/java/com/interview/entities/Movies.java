@@ -1,4 +1,4 @@
-package com.interview.common;
+package com.interview.entities;
 
 import java.awt.Color;
 import java.util.HashMap;
