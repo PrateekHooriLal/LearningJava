@@ -179,12 +179,19 @@ public class CollectorsGuide {
         );
 
         // groupingBy + summingInt() — sum per group
-        Map<Integer, Integer> totalLengthByGroup = names.stream()
+        //
+        // CORRECTION: was Map<Integer, Integer> — WRONG.
+        // charAt(0) returns char, which autoboxes to Character, NOT Integer.
+        // If you wrote Map<Integer, Integer>, the key would print as ASCII values
+        // (e.g., {65=9, 66=8, 67=12}) instead of {A=9, B=8, C=12} — confusing and wrong.
+        // Rule: always match the Map key type to what the classifier actually returns.
+        Map<Character, Integer> totalLengthByGroup = names.stream()
             .collect(Collectors.groupingBy(
-                n -> n.charAt(0),     // group by first character
+                n -> n.charAt(0),     // group by first character → char → autoboxes to Character
                 Collectors.summingInt(String::length)
             ));
         System.out.println("sum of lengths by first char: " + totalLengthByGroup);
+        // Output: {A=9, B=8, C=12}  (Alice=5+Anna=4, Bob=3+Brian=5, Charlie=7+Carol=5)
 
         // groupingBy + mapping() — transform values before collecting
         // mapping(transformer, downstream)

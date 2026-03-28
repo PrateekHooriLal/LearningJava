@@ -6,6 +6,50 @@
 
 ---
 
+## What to Read — In This Order
+
+> Read this list top to bottom before the interview. Do NOT skip steps.
+
+```
+SUNDAY (today) — Theory only, no code
+─────────────────────────────────────────────────────────────────────
+ 1. This file — read every section once
+ 2. Gap 1 (HashMap vs LinkedHashMap vs TreeMap) — say the answer out loud
+ 3. Gap 4 (Decorator pattern) — say the answer + BufferedReader example out loud
+ 4. Gap 2 (@Primary / @Qualifier) — say the rules out loud
+ 5. Fault Tolerant vs Resilience table — memorise the ONE key difference
+ 6. SQS vs Kafka vs RabbitMQ table — memorise the "use when" column
+
+MONDAY — Hands-on coding in Eclipse, NO looking at notes
+─────────────────────────────────────────────────────────────────────
+ 1. Write filter + groupBy + maxBy from memory (target: < 5 minutes)
+ 2. Print the result map using ifPresent — from memory
+ 3. Build Bank Transfer API all 6 layers from scratch (target: < 30 min)
+ 4. Write one Mockito unit test for the service layer
+
+TUESDAY (interview day) — Quick revision only
+─────────────────────────────────────────────────────────────────────
+ 1. Re-read "Mistakes From Practice" section (top of this file)
+ 2. Re-read Downstream Collector Quick Reference table
+ 3. Re-read Bank Transfer API layer list
+ 4. Do NOT read new material — only revision
+```
+
+---
+
+## Code Files for This Interview
+
+| File | What it contains |
+|---|---|
+| `com.interview.altimetrik.AltimetrikStreams.java` | All 4 practice problems — run this |
+| `com.interview.entities.Employee.java` | Employee class with getSampleEmployees() |
+| `com.streams.basics.StreamBasics.java` | Full stream operations reference |
+| `com.streams.collectors.CollectorsGuide.java` | All collectors with examples |
+| `com.streams.mistakes.CommonMistakes.java` | 10 WRONG vs CORRECT mistakes, runnable |
+| `com.streams.printing.PrintingCollections.java` | How to print Map, List, Map+Optional |
+
+---
+
 ## Round Structure
 
 ```
