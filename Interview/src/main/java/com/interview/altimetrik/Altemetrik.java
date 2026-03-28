@@ -1,4 +1,4 @@
-package com.interview.altemetrik;
+package com.interview.altimetrik;
 
 /**
  * ============================================================
