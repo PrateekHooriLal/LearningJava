@@ -13,7 +13,7 @@ import com.interview.entities.Employee;
 
 /**
  * Altimetrik / Airbnb L1 Interview — Stream Problems Notes:
- * Interview/notes/AltimetrikInterviewNotes.md
+ * Interview/notes/Altimetrik_Notes.md
  */
 public class AltimetrikStreams {
 

@@ -79,9 +79,13 @@ public class Employee {
 				new Employee("Grace", 4.5, 55000, 29, Arrays.asList("Excel"), "Finance"));
 	}
 
+	// NOTE: hashCode not implemented — uses Object.hashCode() (reference-based).
+	// equals() also uses Object default (reference equality).
+	// Contract is satisfied (equal objects same hashCode) but two Employee objects
+	// with same data will NOT be considered equal in HashMap/HashSet — by design
+	// for this practice class. If needed, implement both equals + hashCode together.
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
 
