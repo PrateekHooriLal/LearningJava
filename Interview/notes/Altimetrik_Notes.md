@@ -1,6 +1,6 @@
 # Altimetrik / Airbnb — Interview Notes
 
-> **Interview date:** Tuesday 2026-03-31
+> **Interview date:** Wednesday 2026-04-01
 > **Source:** Actual L1 + L2 feedback documents from selected candidates (Nov 2025 – Mar 2026)
 > **Code file:** `Interview/src/main/java/com/interview/altimetrik/AltimetrikStreams.java`
 
