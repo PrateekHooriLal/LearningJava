@@ -3,6 +3,58 @@
 > **Role:** SDE 3 / Senior Java Backend Engineer
 > **Round:** Technical Deep-Dive (9 questions analysed)
 > **Duration:** 4 weeks · ~1–1.5 hrs/day
+
+---
+
+## Index
+
+### Weeks at a Glance
+
+| Week | Theme | Questions | Days |
+|------|-------|-----------|------|
+| Week 1 | Java Concurrency | Q1 (Async), Q6 (Parallelism) | Day 1–5 |
+| Week 2 | Spring AOP + Exception Handling | Q2 (Cross-Cutting), Q8 (AOP), Q9 (Production) | Day 6–10 |
+| Week 3 | Distributed Systems + Real-Time | Q3 (Real-Time), Q4 (CAP) | Day 11–14 |
+| Week 4 | DB Internals + Mock Interview | Q5 (Locking), Q7 (Indexes) | Day 15–20 |
+
+### Topic Index
+
+```
+HOW TOPICS CONNECT ............................................. (below)
+
+WEEK 1 — JAVA CONCURRENCY
+  Day 1  Thread Model + ExecutorService ...................... Future, Callable, thread pools
+  Day 2  Fork/Join + Parallel Streams ........................ work-stealing, commonPool pitfall
+  Day 3  CompletableFuture ................................... thenApply/Compose/Combine, allOf, exceptionally
+  Day 4  @Async + Virtual Threads ............................ Spring @Async, Java 21 VT, StructuredConcurrency
+  Day 5  Week 1 Revision + Practice
+
+WEEK 2 — SPRING AOP + EXCEPTION HANDLING
+  Day 6  Spring AOP Fundamentals ............................. @Aspect, @Around, @AfterThrowing, pointcuts
+  Day 7  Filters vs Interceptors vs AOP ...................... execution order, JWT placement, MDC setup
+  Day 8  @ControllerAdvice + Exception Hierarchy ............. RuntimeException vs checked, global handler
+  Day 9  Production Exception Handling ....................... MDC, structured logging, distributed tracing
+  Day 10 Week 2 Revision
+
+WEEK 3 — DISTRIBUTED SYSTEMS
+  Day 11 CAP Theorem + PACELC ................................ CP vs AP, real system examples
+  Day 12 Real-Time Communication ............................. WebSocket, SSE, Long Polling, gRPC, scaling
+  Day 13 Kafka Deep Dive ..................................... partitions, consumer groups, ordering, guarantees
+  Day 14 Week 3 Revision
+
+WEEK 4 — DB INTERNALS + MOCK
+  Day 15 Index Types in RDBMS ................................ Clustered, Non-Clustered, Composite, Hash, Full-Text
+  Day 16 Optimistic vs Pessimistic Locking ................... @Version, @Lock, BigDecimal.compareTo(), retry
+  Day 17 Full Revision I ..................................... Concurrency + Spring
+  Day 18 Full Revision II .................................... Distributed + DB
+  Day 19 Mock Interview ...................................... 5 questions, timed, spoken answers
+  Day 20 Weak Spots + Final Revision
+
+MOCK QUESTION BANK (20 Questions) ............................. SDE 3 difficulty
+RECOMMENDED BOOKS
+```
+
+---
 > **Philosophy:** Foundational first. Each week builds on the last.
 
 ---
