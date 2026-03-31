@@ -27,7 +27,7 @@ public class Accolite_StreamTest implements Runnable {
 
 	@Override
 	public void run() {
-		Accolite_Test obj = new Accolite_Test();
+		//Accolite_Test obj = new Accolite_Test();
 		try {
 			obj.printNumber(10);
 		} catch (InterruptedException e) {
