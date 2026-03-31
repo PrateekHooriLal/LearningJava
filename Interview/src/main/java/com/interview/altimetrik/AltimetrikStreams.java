@@ -3,10 +3,12 @@ package com.interview.altimetrik;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.interview.entities.Employee;
@@ -40,15 +42,13 @@ public class AltimetrikStreams {
 
 		List<Employee> employees = Employee.getSampleEmployees();
 
-		Map<String, Optional<Employee>> result = employees.stream().filter(e -> e.getSalary() > 50_000)
-				.collect(Collectors.groupingBy(Employee::getDepartment,
-						Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
+		Map<String, Optional<Employee>> result = employees.stream().filter(e -> e.getSalary() > 50000).
+				collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
 
-		result.forEach((dept, empOpt) -> empOpt
-				.ifPresent(emp -> System.out.println(dept + " -> " + emp.getName() + " | " + emp.getSalary())));
-
-		// Follow-up: get just the salary value (unwrap Optional using
-		// collectingAndThen)
+		result.forEach((dept, empOpt) ->
+		empOpt.ifPresent(emp -> System.out.println(dept + " -> " + emp.getName() + " |Salary= " + emp.getSalary())));
+         
+		// Follow-up: get just the salary value (unwrap Optional using collectingAndThen)
 		Map<String, Double> maxSalaryPerDept = employees.stream().filter(e -> e.getSalary() > 50_000)
 				.collect(Collectors.groupingBy(Employee::getDepartment,
 						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparing(Employee::getSalary)),
@@ -92,18 +92,22 @@ public class AltimetrikStreams {
 	}
 
 	// Problem 3 — Character frequency count
-	// Input: "aabbccsrrtvvaa" Output: a=4, b=2, c=2, s=1, r=2, t=1, v=2
+	// Input: "zzaabbccsrrtvvaa" Output: a=4, b=2, c=2, s=1, r=2, t=1, v=2
 	static void problem3_charFrequency() {
 
-		String input = "aabbccsrrtvvaa";
+		String input = "zzzaabbccsrrtvvaa";
 
 		// Approach 1: Streams (show this first in interview)
 		Map<String, Long> freqMap = Arrays.stream(input.split(""))
 				.collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 		new TreeMap<>(freqMap).forEach((ch, count) -> System.out.print(ch + "=" + count + " "));
-		System.out.println();
+		
+		Map<String, Long> s = Arrays.stream(input.split("")).
+				collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()));
+		System.out.println("Using Tree map in the approach "+s.toString());
+		
 
-		// Approach 2: Array — O(1) space, faster (mention as optimisation)
+		// Approach 2: Array — O(1) space, faster (mention as optimization)
 		int[] freq = new int[26];
 		for (char c : input.toCharArray())
 			freq[c - 'a']++;

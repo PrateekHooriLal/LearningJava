@@ -40,7 +40,8 @@ import java.math.BigDecimal;
  */
 public class InsufficientBalanceException extends RuntimeException {
 
-    // Store the account ID and balance for use in the error message
+    private static final long serialVersionUID = 7836249746916405385L;
+	// Store the account ID and balance for use in the error message
     private final Long accountId;
     private final BigDecimal currentBalance;
 
