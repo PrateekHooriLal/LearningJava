@@ -4,15 +4,16 @@ import java.util.Scanner;
 
 public class MoveToStarOrEnd {
 
-	static int[] arr = { 1, 99, 67, 1, 1, 74, 85, 1, 26, 37, 1 };
+	static int[] arr = { 2, 3, 1, 99, 67, 1, 1, 74, 85, 1, 26, 37, 1 };
 
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Original Array : ");
+		System.out.print("Original Array ={ ");
 		for (int i : arr) {
-			System.out.print(i + " ");
+			System.out.print(i + " ,");
 		}
+		System.out.println("}");
 
 		System.out.println("Enter a number:");
 		int pivot = sc.nextInt();
@@ -33,11 +34,15 @@ public class MoveToStarOrEnd {
 	public static int[] MoveToEnd(int[] arr, int pivot) {
 		int j = 0;
 		for (int i = 0; i < arr.length; i++) {
+			System.out.println(i + "= ");
 			if (arr[i] != pivot) {
 				int temp = arr[j];
 				arr[j] = arr[i];
 				arr[i] = temp;
 				j++;
+				for (int c : arr) {
+					System.out.print(c + " ");
+				}
 			}
 		}
 		return arr;

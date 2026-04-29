@@ -26,6 +26,7 @@ public class FirstLeastOccurringNumber {
 			if (count < minOccurrence || (count == minOccurrence && indexOf(arr, arr[i]) < indexOf(arr, minNum))) {
 				minOccurrence = count;
 				minNum = arr[i];
+	
 			}
 		}
 
