@@ -15,6 +15,8 @@ public class SeparateNumbersAndStrings {
 		sampleStr.add("98.3FM");
 		sampleStr.add("1,233.00 USD");
 
+		//sampleStr.stream().mat
+
 		// Regular expression to match one or more digits
 		Pattern numberPattern = Pattern.compile("\\d+");
 
