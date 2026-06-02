@@ -183,6 +183,7 @@ public class StreamBasics {
         numbers.stream().limit(3).forEach(n -> System.out.print(n + " "));
         System.out.println();
     }
+
     // -------------------------------------------------------------------------
     // 4. LAZY EVALUATION DEMO
     // -------------------------------------------------------------------------

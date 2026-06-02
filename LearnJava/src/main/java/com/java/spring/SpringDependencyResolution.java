@@ -89,9 +89,9 @@ public class SpringDependencyResolution {
     // SIMULATED ANNOTATIONS
     // =========================================================
 
-   @Retention(RetentionPolicy.RUNTIME) @Target({ElementType.TYPE, ElementType.METHOD})
+    @Retention(RetentionPolicy.RUNTIME) @Target({ElementType.TYPE, ElementType.METHOD})
     @interface Component { String value() default ""; }
-   
+
     @Retention(RetentionPolicy.RUNTIME) @Target({ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.METHOD})
     @interface Autowired { boolean required() default true; }
 
