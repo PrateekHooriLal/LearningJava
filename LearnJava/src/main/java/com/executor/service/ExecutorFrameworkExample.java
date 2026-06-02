@@ -16,7 +16,7 @@ public class ExecutorFrameworkExample {
 			@Override
 			public void run() {
 				int i = 0;
-				while (i < 20) {
+				while (i <= 20) {
 					String threadName = Thread.currentThread().getName();
 					System.out.println("Task 0 =>" + threadName);
 					i++;
@@ -27,6 +27,12 @@ public class ExecutorFrameworkExample {
 
 		// creating runnable task using Lambda Expression
 		Runnable task_1 = () -> {
+			int i = 0;
+			while (i <= 20) {
+				String threadName = Thread.currentThread().getName();
+				System.out.println("Task 1 =>" + threadName);
+				i++;
+			}
 			String threadName = Thread.currentThread().getName();
 			System.out.println("Task 1 =>" + threadName);
 		};

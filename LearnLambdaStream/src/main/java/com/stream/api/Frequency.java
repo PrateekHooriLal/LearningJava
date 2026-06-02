@@ -1,9 +1,18 @@
 package com.stream.api;
 
+import java.security.cert.CollectionCertStoreParameters;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import com.sun.source.tree.Tree;
 
 /**
  * ============================================================
@@ -49,6 +58,8 @@ public class Frequency {
 		System.out.println("Input string (spaces removed): " + s);
 		System.out.println("Using HashMap = " + getCharFrequency(s));
 		System.out.println("Using Streams = " + getCharFrequencyStream(s));
+		System.out.println("Sotred Using Streams = " + getSortedCharFrequencyStream(s));
+
 	}
 
 	// ============================================================
@@ -118,5 +129,19 @@ public class Frequency {
 						Function.identity(),           // key   = the character itself
 						Collectors.summingInt(c -> 1)  // value = count (sum of 1s)
 				));
+	}
+	
+	public static String getSortedCharFrequencyStream(String str){
+		
+		return str.chars().
+				filter(ch -> Character.isLetter(ch)).
+				mapToObj(ch -> (char)ch).
+				collect(Collectors.groupingBy(Function.identity(),Collectors.counting())).
+				entrySet().stream().
+				sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).
+				skip(1).
+				map(entry -> String.valueOf(entry.getKey())).
+				findFirst().
+				orElse("No 2nd Highest");
 	}
 }

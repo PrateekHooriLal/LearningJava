@@ -5,6 +5,8 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.*;
 
+import org.springframework.stereotype.Component;
+
 /**
  * ============================================================
  * HOW SPRING RECOGNIZES AND RESOLVES DEPENDENCIES

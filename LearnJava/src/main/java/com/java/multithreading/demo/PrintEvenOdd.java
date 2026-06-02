@@ -22,7 +22,6 @@ class PrintEvenOdd implements Runnable {
 			synchronized (lock) {
 				// System.out.println(Thread.currentThread().getName() + " Num=" + num + "
 				// CalRemainder=" + num % 2+ "::Remainder:" + remainder);
-
 				if (num % 2 != remainder) {
 					try {
 						lock.wait();
@@ -31,19 +30,9 @@ class PrintEvenOdd implements Runnable {
 					}
 
 				}
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 				if (num % 2 == remainder) {
 					System.out.println(Thread.currentThread().getName() + "::" + num++);
 					lock.notify();
-				}
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
 				}
 			}
 
@@ -51,11 +40,11 @@ class PrintEvenOdd implements Runnable {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		Thread t1 = new Thread(new PrintEvenOdd(1, 100, 0), "Even");
 		Thread t2 = new Thread(new PrintEvenOdd(1, 100, 1), "Odd ");
 		t1.start();
 		t2.start();
-		
+
 	}
 }

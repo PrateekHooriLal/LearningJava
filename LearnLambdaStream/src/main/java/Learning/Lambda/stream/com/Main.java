@@ -12,7 +12,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Map<String, String> map = Arrays.stream(str.split(",")).map(e -> e.split(":")).collect(Collectors.toMap(v -> v[0], v -> v[1]));
+		Map<String, String> map = Arrays.stream(str.split(","))
+				.map(e -> e.split(":")).
+				collect(Collectors.toMap(v -> v[0], v -> v[1]));
 		System.out.println(map);
 
 	}

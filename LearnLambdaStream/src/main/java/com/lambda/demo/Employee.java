@@ -1,8 +1,10 @@
 package com.lambda.demo;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Employee {
+	private final UUID empId;
 	private String name;
 	private double experience;
 	private int age;
@@ -10,6 +12,7 @@ public class Employee {
 	private String department;
 
 	public Employee(String name, double experience, int age, List<String> skills, String department) {
+		this.empId = UUID.randomUUID();
 		this.name = name;
 		this.experience = experience;
 		this.age = age;
@@ -63,18 +66,18 @@ public class Employee {
 		// "objects that are equal must have the same hashCode"
 		// Without equals(), two Employee objects with same name/dept would not be
 		// considered equal in HashMap/HashSet even though hashCode might match.
-		if (this == obj) return true;
-		if (obj == null || getClass() != obj.getClass()) return false;
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
 		Employee other = (Employee) obj;
-		return age == other.age
-				&& Double.compare(experience, other.experience) == 0
-				&& java.util.Objects.equals(name, other.name)
-				&& java.util.Objects.equals(department, other.department);
+		return age == other.age && Double.compare(experience, other.experience) == 0
+				&& java.util.Objects.equals(name, other.name) && java.util.Objects.equals(department, other.department);
 	}
 
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(name, experience, age, department);
+		return java.util.Objects.hash(empId);
 	}
 
 	@Override
@@ -82,4 +85,9 @@ public class Employee {
 		return "Employee [name=" + name + ", experience=" + experience + ", age=" + age + ", skills=" + skills
 				+ ", department=" + department + "]";
 	}
+
+	public UUID getEmpId() {
+		return empId;
+	}
+
 }
