@@ -1,6 +1,7 @@
 package com.stream.api;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,16 +13,16 @@ public class Secondlargest {
 
 	public static void main(String[] args) {
 
-		// HttpRequest
 		// streams to find second largest
 		int secondlargestNumber = list.stream().sorted(Comparator.reverseOrder()).toList().get(1);
 		System.out.println(secondlargestNumber);
 
 		// list.stream().
+		Collections.sort(list);
+		System.out.println(list);
+		int indx = list.size() - 2;
+		System.out.println(list.get(indx));
+
 	}
 
 }
-/*
- * Collections.sort(list); System.out.println(list); int indx = list.size() - 2;
- * System.out.println(list.get(indx));
- */

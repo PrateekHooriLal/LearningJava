@@ -8,21 +8,27 @@ public class MainThread {
 		PrintNumber obj = new PrintNumber(1, 100);
 		Thread even = new Thread(obj, "Even");
 		Thread odd = new Thread(obj, "Odd");
-		even.start();
-		odd.start();
+		//even.start();
+		//odd.start();
+		
+		PrintEvenOdd obj2 =  new PrintEvenOdd(1, 30, 0);
+		Thread printer = new Thread(obj2);
+		printer.start();
 
 		// creating thread using lambda expression
 		Thread t3 = new Thread(() -> {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i <= 10; i++) {
 				System.out.println(Thread.currentThread().getName() + "=T3 : " + i);
 				try {
-					Thread.sleep(1500);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
+		//System.out.println(Thread.currentThread());
 		});
-		// t3.start();
+		 t3.start();
+		
 
 	}// man ends
 }// class ends

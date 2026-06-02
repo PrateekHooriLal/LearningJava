@@ -5,6 +5,8 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.*;
 
+import org.springframework.stereotype.Component;
+
 /**
  * ============================================================
  * HOW SPRING RECOGNIZES AND RESOLVES DEPENDENCIES
@@ -87,9 +89,9 @@ public class SpringDependencyResolution {
     // SIMULATED ANNOTATIONS
     // =========================================================
 
-    @Retention(RetentionPolicy.RUNTIME) @Target({ElementType.TYPE, ElementType.METHOD})
+   @Retention(RetentionPolicy.RUNTIME) @Target({ElementType.TYPE, ElementType.METHOD})
     @interface Component { String value() default ""; }
-
+   
     @Retention(RetentionPolicy.RUNTIME) @Target({ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.METHOD})
     @interface Autowired { boolean required() default true; }
 

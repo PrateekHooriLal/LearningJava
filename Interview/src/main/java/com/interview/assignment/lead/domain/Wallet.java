@@ -56,6 +56,9 @@ public class Wallet {
     @Column(nullable = false)
     private LocalDateTime lastUpdated;
 
+    @Column(nullable = false)
+    private LocalDateTime created;
+    
     /**
      * JPA Lifecycle Hooks:
      * @PrePersist: Executed before the entity is saved for the first time.

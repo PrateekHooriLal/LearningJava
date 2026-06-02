@@ -1,7 +1,14 @@
 package com.streams.collectors;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * COLLECTORS GUIDE — All Collectors with Examples
@@ -36,10 +43,11 @@ public class CollectorsGuide {
     static List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "Anna", "Brian", "Carol");
     static List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
 
         System.out.println("=== 1. Basic Collectors ===");
         basicCollectors();
+        
 
         System.out.println("\n=== 2. Numeric Collectors ===");
         numericCollectors();
@@ -179,7 +187,6 @@ public class CollectorsGuide {
         );
 
         // groupingBy + summingInt() — sum per group
-        //
         // CORRECTION: was Map<Integer, Integer> — WRONG.
         // charAt(0) returns char, which autoboxes to Character, NOT Integer.
         // If you wrote Map<Integer, Integer>, the key would print as ASCII values
@@ -238,16 +245,15 @@ public class CollectorsGuide {
         // But you want Map<K, V> — no Optional wrapper
         // Solution: collectingAndThen to unwrap the Optional
 
-        Map<Integer, String> longestByLength = names.stream()
-            .collect(Collectors.groupingBy(
-                String::length,
+       /* Map<Integer, String> longestByLength = names.stream()
+            .collect(Collectors.groupingBy(String::length,
                 Collectors.collectingAndThen(
                     Collectors.maxBy(Comparator.naturalOrder()),  // gives Optional<String>
                     opt -> opt.orElse("none")                     // unwrap → just String
                 )
-            ));
+            ));*/
         // Result: Map<Integer, String>  — no Optional!
-        System.out.println("collectingAndThen (unwrapped): " + longestByLength);
+        //System.out.println("collectingAndThen (unwrapped): " + longestByLength);
 
         // Also useful for making the result unmodifiable after collecting
         List<String> unmodifiable = names.stream()

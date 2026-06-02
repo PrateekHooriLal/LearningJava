@@ -8,20 +8,21 @@ import java.util.stream.Collectors;
 
 public class FindDupes {
 
-	static List<String> names = Arrays.asList("John", "Jake", "Jake", "John", "John", "Amit");
+	static List<String> names = Arrays.asList("John", "Jake", "Jake", "John", "John", "Amit", "Sumit","John");
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String s = "A";
-		System.out.println(s.codePointAt(0));
+		//names.toString().codePoints().forEach(System.out::println);
 		Set<String> tempSet = new HashSet<>();
-		
-		List<String> duplicateWords = names.stream().filter(w ->!tempSet.add(w)).collect(Collectors.toList());
+
+		List<String> duplicateWords = names.stream().filter(word -> !tempSet.add(word)).distinct().collect(Collectors.toList());
+		System.out.println("TempSet= "+tempSet);
+		System.out.println("duplicateWords= "+duplicateWords);
+
 
 		List<String> uniqueWords = names.stream().distinct().collect(Collectors.toList());
-		System.out.println(duplicateWords);
-		System.out.println(uniqueWords);
+		System.out.println("uniqueWords= "+uniqueWords);
 
 	}
 

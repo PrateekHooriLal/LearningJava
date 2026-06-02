@@ -19,15 +19,14 @@ public class NameFreq {
 
 		// count.put(names.get(0), 0);
 		for (String name : names) {
-
 			if (!count.containsKey(name))
 				count.put(name, 1);
 			else
 				count.put(name, count.get(name) + 1);
-
 		}
 
 		System.out.println(count.toString());
+		System.out.println(names.stream().toString());
 	}
-
+	
 }

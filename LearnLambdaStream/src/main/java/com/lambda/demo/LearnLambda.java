@@ -5,20 +5,19 @@ public class LearnLambda {
 	public static void main(String[] args) {
 
 		// calling static Lambda expression
-		LearnLambda.sl.iamabstract();
-		sl.perform();
+		LearnLambda.staticLamba.iamabstract();
+		staticLamba.perform();
 
 		// calling non static lambda Expression
 		LearnLambda ll = new LearnLambda();
 		ll.nsl.iamabstract();
 		ll.nsl.perform();
-		
 
 		System.out.println(ll.fs.findSum(1, 3));
 	}
 
 	// static Lambda expression
-	static how sl = () -> {
+	static how staticLamba = () -> {
 		System.out.println("Testing static Lamda expression");
 	};
 

@@ -7,7 +7,7 @@ public interface how {
 
 	// concrete methods can be now written inside interface using "default" keyword.
 	default public void perform() {
-		System.out.println("Inside how interface's default method");
+		System.out.println("Inside how Functional interface's default method");
 	}
 
 }
